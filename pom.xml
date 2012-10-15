@@ -110,4 +110,8 @@
     	<version>4.1.0</version>
     </dependency>
   </dependencies>
+  <scm>
+  	<connection>git@github.com:mingyans/hw1-mingyans.git</connection>
+  	<developerConnection>git@github.com:mingyans/hw1-mingyans.git</developerConnection>
+  </scm>
 </project>

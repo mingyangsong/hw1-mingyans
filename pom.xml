@@ -111,7 +111,7 @@
     </dependency>
   </dependencies>
   <scm>
-  	<connection>git@github.com:mingyans/hw1-mingyans.git</connection>
-  	<developerConnection>git@github.com:mingyans/hw1-mingyans.git</developerConnection>
+  	<connection>scm:git:git@github.com:mingyans/hw0-mingyans.git</connection>
+  	<developerConnection>scm:git:git@github.com:mingyans/hw0-mingyans.git</developerConnection>
   </scm>
 </project>

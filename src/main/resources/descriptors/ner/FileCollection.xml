@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><collectionReaderDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
-  <implementationName>genemention.annotator.FileSystemCollectionReader</implementationName>
+  <implementationName>genemention.Annotator.FileCollection</implementationName>
   <processingResourceMetaData>
-    <name>File System Collection Reader</name>
-    <description>Reads files from the filesystem.  This CollectionReader may be used
+    <name>File Collection</name>
+    <description>Reads file from the filesystem.  This CollectionReader may be used
           with or without a CAS Initializer.  If a CAS Initializer is supplied, it will
           be passed an InputStream to the file and must populate the CAS from that
           InputStream.  If no CAS Initializer is supplied, this CollectionReader will

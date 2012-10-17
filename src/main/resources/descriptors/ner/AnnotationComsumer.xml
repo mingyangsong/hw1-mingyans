@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><casConsumerDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
-  <implementationName>genemention.annotator.AnnotationPrinter</implementationName>
+  <implementationName>genemention.Annotator.AnnotationComsumer</implementationName>
   <processingResourceMetaData>
-    <name>Annotation Printer</name>
+    <name>Annotation Comsumer</name>
     <description>Prints annotations.</description>
     <version>1.0</version>
     <vendor>The Apache Software Foundation</vendor>
@@ -12,7 +12,7 @@
         <description>File to which annotations will be printed</description>
         <type>String</type>
         <multiValued>false</multiValued>
-        <mandatory>false</mandatory>
+        <mandatory>true</mandatory>
       </configurationParameter>
     </configurationParameters>
     <configurationParameterSettings>
@@ -32,7 +32,9 @@
     <fsIndexCollection/>
     <capabilities>
       <capability>
-        <inputs/>
+        <inputs>
+          <type allAnnotatorFeatures="true">genemention.Type.GeneSentence</type>
+        </inputs>
         <outputs/>
         <languagesSupported/>
       </capability>

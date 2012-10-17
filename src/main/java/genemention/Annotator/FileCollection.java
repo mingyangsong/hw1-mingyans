@@ -1,4 +1,4 @@
-package genemention.annotator;
+package genemention.Annotator;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,18 +15,31 @@ import org.apache.uima.resource.ResourceInitializationException;
 import org.apache.uima.util.Progress;
 import org.apache.uima.util.ProgressImpl;
 
-public class FileSystemCollectionReader extends CollectionReader_ImplBase {
+/**
+ * 
+ * FillCollection is a collection which get the input file(hw1.in).
+ * Use Scanner to get each line which is a sentence from the file and 
+ * input each sentence into each CAS for future process.
+ * 
+ * @author mingyans
+ * 
+ */
+public class FileCollection extends CollectionReader_ImplBase {
 
   public static final String PARAM_INPUTPATH = "InputPath";
 
-  public static final String PARAM_ENCODING = "Encoding";
-
+  /*
+   * New build a sentence ArrayList object, so that each sentence can be put into a CAS List.
+   */
   private ArrayList<String> mSentence;
 
   private int mCurrentIndex;
 
   @Override
   public void initialize() throws ResourceInitializationException {
+    /*
+     * Input File Path, which is hw1.in. The path is defined in FileCollection.xml
+     */
     File directory = new File(((String) getConfigParameterValue(PARAM_INPUTPATH)).trim());
     mCurrentIndex = 0;
 
@@ -34,6 +47,9 @@ public class FileSystemCollectionReader extends CollectionReader_ImplBase {
     addSentencesFromDir(directory);
   }
 
+  /*
+   * Read File and get each line by a Scanner
+   */
   private void addSentencesFromDir(File dir) {
     Scanner sentence = null;
     try {
@@ -60,9 +76,13 @@ public class FileSystemCollectionReader extends CollectionReader_ImplBase {
       throw new CollectionException(e);
     }
 
-    // open input stream to file
+    /*
+     * Get each sentence from Sentence ArrayList and input into line 
+     */
     String line = mSentence.get(mCurrentIndex++);
-    // put document in CAS
+    /*
+     *  Put sentence into CAS
+     */
     jcas.setDocumentText(line);
   }
 

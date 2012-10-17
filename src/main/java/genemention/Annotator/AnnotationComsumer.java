@@ -1,6 +1,6 @@
-package genemention.annotator;
+package genemention.Annotator;
 
-import genemention.type.GeneModel;
+import genemention.Type.GeneSentence;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -18,26 +18,45 @@ import org.apache.uima.resource.ResourceInitializationException;
 import org.apache.uima.resource.ResourceProcessException;
 import org.apache.uima.util.ProcessTrace;
 
-public class AnnotationPrinter extends CasConsumer_ImplBase implements CasObjectProcessor {
+/**
+ * 
+ * AnnotationComsumer is a annotation printer which will print the Gene Mention with 
+ * SentenceID, start offset, end offset, and Gene Mention Tag.
+ * The output is a file named hw1-mingyans.out.
+ * The TypeSystem input is GeneSentence.
+ * 
+ * @author mingyans
+ *
+ */
+public class AnnotationComsumer extends CasConsumer_ImplBase implements CasObjectProcessor {
   File outFile;
 
   FileWriter fileWriter;
 
-  public AnnotationPrinter() {
+  /**
+   * The Comsumer Class.
+   */
+  public AnnotationComsumer() {
   }
 
   @Override
   public void initialize() throws ResourceInitializationException {
 
-    // extract configuration parameter settings
+    /*
+     *  extract configuration parameter settings
+     */
     String oPath = (String) getUimaContext().getConfigParameterValue("outputFile");
 
-    // Output file should be specified in the descriptor
+    /*
+     *  Output file should be specified in the descriptor
+     */
     if (oPath == null) {
       throw new ResourceInitializationException(
               ResourceInitializationException.CONFIG_SETTING_ABSENT, new Object[] { "outputFile" });
     }
-    // If specified output directory does not exist, try to create it
+    /*
+     *  If specified output directory does not exist, try to create it
+     */
     outFile = new File(oPath.trim());
     if (outFile.getParentFile() != null && !outFile.getParentFile().exists()) {
       if (!outFile.getParentFile().mkdirs())
@@ -61,19 +80,23 @@ public class AnnotationPrinter extends CasConsumer_ImplBase implements CasObject
       throw new ResourceProcessException(e);
     }
 
-    Iterator<Annotation> it = jcas.getAnnotationIndex(GeneModel.type).iterator();
+    Iterator<Annotation> it = jcas.getAnnotationIndex(GeneSentence.type).iterator();
     while (it.hasNext()) {
-      // ///编辑自己的输出格式
-      GeneModel annotation = (GeneModel) it.next();
+      /*
+       * Get all the text from TypeSystem GeneSentence and write in required format.
+       */
+      GeneSentence annotation = (GeneSentence) it.next();
       String input = annotation.getSentenceID();
 
       int begin = annotation.getBegin();
       int end = annotation.getEnd();
       String noun = annotation.getGeneMention();
 
-      // 定义输出格式
+      /*
+       * Write Part.
+       */
       try {
-        fileWriter.write(input + "|" + begin + " " + end + "|" + noun + "\n\r\n\r");
+        fileWriter.write(input + "|" + begin + " " + end + "|" + noun + "\n\r");
         fileWriter.flush();
       } catch (IOException e) {
         // TODO Auto-generated catch block

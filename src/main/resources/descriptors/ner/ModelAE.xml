@@ -1,28 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?><analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
-  <primitive>true</primitive>
-  <annotatorImplementationName>genemention.AE.ModelAE</annotatorImplementationName>
+  <primitive>false</primitive>
+  <delegateAnalysisEngineSpecifiers>
+    <delegateAnalysisEngine key="GeneTagAE">
+      <import location="GeneTagAE.xml"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="SentenceAE">
+      <import location="SentenceAE.xml"/>
+    </delegateAnalysisEngine>
+  </delegateAnalysisEngineSpecifiers>
   <analysisEngineMetaData>
     <name>ModelAE</name>
-    <description>Annotates tokens and sentences.</description>
+    <description>Lingpipe HMM model AE aggregaed from SentenceAE and GeneMentionAE.</description>
     <version>1.0</version>
     <vendor>The Apache Software Foundation</vendor>
     <configurationParameters/>
     <configurationParameterSettings/>
-    <typeSystemDescription>
-      <imports>
-        <import location="GeneMentionType.xml"/>
-      </imports>
-    </typeSystemDescription>
-    <typePriorities/>
+    <flowConstraints>
+      <fixedFlow>
+        <node>SentenceAE</node>
+        <node>GeneTagAE</node>
+      </fixedFlow>
+    </flowConstraints>
     <fsIndexCollection/>
     <capabilities>
       <capability>
         <inputs/>
-        <outputs/>
-        <languagesSupported>
-          <language>en</language>
-        </languagesSupported>
+        <outputs>
+          <type allAnnotatorFeatures="true">genemention.Type.GeneSentence</type>
+        </outputs>
+        <languagesSupported/>
       </capability>
     </capabilities>
     <operationalProperties>

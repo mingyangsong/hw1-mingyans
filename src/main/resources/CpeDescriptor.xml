@@ -3,7 +3,7 @@
     <collectionReader>
         <collectionIterator>
             <descriptor>
-                <import location="Descriptor/FileSystemCollectionReader.xml"/>
+                <import location="descriptors/ner/FileCollection.xml"/>
             </descriptor>
             <configurationParameterSettings>
                 <nameValuePair>
@@ -16,9 +16,9 @@
         </collectionIterator>
     </collectionReader>
     <casProcessors casPoolSize="3" processingUnitThreadCount="1">
-        <casProcessor deployment="integrated" name="PosTagAE">
+        <casProcessor deployment="integrated" name="ModelAE">
             <descriptor>
-                <import location="Descriptor/ModelAE.xml"/>
+                <import location="descriptors/ner/ModelAE.xml"/>
             </descriptor>
             <deploymentParameters/>
             <errorHandling>
@@ -28,9 +28,9 @@
             </errorHandling>
             <checkpoint batch="10000" time="1000ms"/>
         </casProcessor>
-        <casProcessor deployment="integrated" name="Annotation Printer">
+        <casProcessor deployment="integrated" name="Annotation Comsumer">
             <descriptor>
-                <import location="Descriptor/AnnotationPrinter.xml"/>
+                <import location="descriptors/ner/AnnotationComsumer.xml"/>
             </descriptor>
             <deploymentParameters/>
             <errorHandling>

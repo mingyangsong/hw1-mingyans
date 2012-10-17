@@ -8,17 +8,21 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import genemention.type.GeneDoc;
+import genemention.Type.GeneDoc;
 
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.resource.ResourceInitializationException;
 
+/**
+ * This is for class example PosTagNamedEntityRecognizer. This annotator will not be used in final
+ * program.
+ * 
+ * @author mingyans
+ * 
+ */
 public class PosTagAE extends JCasAnnotator_ImplBase {
-  // *************************************************************
-  // * process *
-  // *************************************************************
   @Override
   public void process(JCas aJCas) throws AnalysisEngineProcessException {
     JCas jcas = aJCas;
@@ -52,7 +56,7 @@ public class PosTagAE extends JCasAnnotator_ImplBase {
 
       GeneDoc annotation = new GeneDoc(aJCas);
       annotation.setSentenceID(ID);
-      annotation.setGeneTag(input.substring(me.getKey(), me.getValue()));
+      annotation.setGeneText(input.substring(me.getKey(), me.getValue()));
       annotation.setBegin(me.getKey());
       annotation.setEnd(me.getValue());
       annotation.addToIndexes();

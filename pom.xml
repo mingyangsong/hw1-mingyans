@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>edu.cmu.lti.11791.f12.hw1</groupId>
   <artifactId>hw1-mingyans</artifactId>
-  <version>0.0.3</version>
+  <version>0.0.3-SNAPSHOT</version>
   <repositories>
     <repository>
       <id>oaqa</id>
@@ -111,7 +111,7 @@
     </dependency>
   </dependencies>
   <scm>
-  	<connection>scm:git:git@github.com:mingyans/hw0-mingyans.git</connection>
-  	<developerConnection>scm:git:git@github.com:mingyans/hw0-mingyans.git</developerConnection>
+  	<connection>scm:git:git@github.com:mingyans/hw1-mingyans.git</connection>
+  	<developerConnection>scm:git:git@github.com:mingyans/hw1-mingyans.git</developerConnection>
   </scm>
 </project>

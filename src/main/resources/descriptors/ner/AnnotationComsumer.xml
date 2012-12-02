@@ -19,7 +19,7 @@
       <nameValuePair>
         <name>outputFile</name>
         <value>
-          <string>temp-uima-output/annotprint/annotations.txt</string>
+          <string>data\hw1-mingyans.out</string>
         </value>
       </nameValuePair>
     </configurationParameterSettings>

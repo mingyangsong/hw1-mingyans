@@ -19,7 +19,7 @@
       <nameValuePair>
         <name>outputFile</name>
         <value>
-          <string>data\hw1-mingyans.out</string>
+          <string>hw1-mingyans.out</string>
         </value>
       </nameValuePair>
     </configurationParameterSettings>

@@ -96,7 +96,7 @@ public class AnnotationComsumer extends CasConsumer_ImplBase implements CasObjec
        * Write Part.
        */
       try {
-        fileWriter.write(input + "|" + begin + " " + end + "|" + noun + "\n\r");
+        fileWriter.write(input + "|" + begin + " " + end + "|" + noun + "\n");
         fileWriter.flush();
       } catch (IOException e) {
         // TODO Auto-generated catch block

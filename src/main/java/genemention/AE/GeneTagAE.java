@@ -29,6 +29,7 @@ public class GeneTagAE extends JCasAnnotator_ImplBase {
   @Override
   public void process(JCas aJCas) throws AnalysisEngineProcessException {
     JCas jcas = aJCas;
+    int spacePreStart, spacePreEnd; // to record number of white-spaces
 
     String ModelFile = (String) getContext().getConfigParameterValue("ModelFile");
     /*
@@ -40,6 +41,7 @@ public class GeneTagAE extends JCasAnnotator_ImplBase {
 
       GeneDoc annotation1 = (GeneDoc) it1.next();
       String Sentence = annotation1.getGeneText();
+      // System.out.println(x)
 
       String ID = annotation1.getSentenceID();
       /*
@@ -61,6 +63,12 @@ public class GeneTagAE extends JCasAnnotator_ImplBase {
       Iterator<Chunk> it2 = chunker.nBestChunks(cs, 0, cs.length, 20);
       while (it2.hasNext()) {
         Chunk chunk = it2.next();
+
+        /*
+         * count the number of white-spaces preceding the chunk's start and end.
+         */
+        spacePreStart = Sentence.substring(0, chunk.start()).replaceAll(" ", "").length();
+        spacePreEnd = Sentence.substring(0, chunk.end()).replaceAll(" ", "").length();
         /*
          * Choose a threshold to leave the tag which is not Gene Tag.
          */
@@ -71,8 +79,8 @@ public class GeneTagAE extends JCasAnnotator_ImplBase {
          */
         GeneSentence annotation2 = new GeneSentence(jcas);
         annotation2.setSentenceID(ID);
-        annotation2.setBegin(chunk.start());
-        annotation2.setEnd(chunk.end());
+        annotation2.setBegin(spacePreStart);
+        annotation2.setEnd(spacePreEnd - 1);
         annotation2.setGeneMention(Sentence.substring(chunk.start(), chunk.end()));
         annotation2.addToIndexes();
       }

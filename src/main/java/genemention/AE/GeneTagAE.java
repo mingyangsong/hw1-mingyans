@@ -29,7 +29,7 @@ public class GeneTagAE extends JCasAnnotator_ImplBase {
   @Override
   public void process(JCas aJCas) throws AnalysisEngineProcessException {
     JCas jcas = aJCas;
-    int spacePreStart, spacePreEnd; // to record number of white-spaces
+    int spacePreStart, spacePreEnd; // real span start and end
 
     String ModelFile = (String) getContext().getConfigParameterValue("ModelFile");
     /*
@@ -65,7 +65,7 @@ public class GeneTagAE extends JCasAnnotator_ImplBase {
         Chunk chunk = it2.next();
 
         /*
-         * count the number of white-spaces preceding the chunk's start and end.
+         * move white-spaces preceding the chunk's start and end.
          */
         spacePreStart = Sentence.substring(0, chunk.start()).replaceAll(" ", "").length();
         spacePreEnd = Sentence.substring(0, chunk.end()).replaceAll(" ", "").length();
